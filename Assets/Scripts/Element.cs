@@ -48,6 +48,11 @@ public class Element : MonoBehaviour {
             LoadTexture(Grid.AdjacentMines(x, y));
 
             Grid.FloodFillAlgorithm(x, y, new bool[Grid.w, Grid.h]);
+
+            if (Grid.IsFinished())
+            {
+                //Win();
+            }
         }
     }
 

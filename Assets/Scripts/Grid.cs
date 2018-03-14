@@ -64,4 +64,13 @@ public class Grid {
 
         }
     }
+
+    public static bool IsFinished()
+    {
+        foreach (Element element in elements)
+            if (element.isCovered() && !element.mine)
+                return false;
+
+        return true; 
+    }
 }
