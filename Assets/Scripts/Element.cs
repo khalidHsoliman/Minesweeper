@@ -4,6 +4,7 @@ public class Element : MonoBehaviour {
 
     public bool mine;
 
+    public Sprite defaultTexture; 
     public Sprite mineTexture;
     public Sprite[] emptyTextures; 
 
@@ -33,23 +34,28 @@ public class Element : MonoBehaviour {
 
     private void OnMouseUpAsButton()
     {
-        if(mine)
-        {   
-            Grid.Instance.UncoverMines(); 
-        }
-
-        else
+        if (!GameManager.Instance.gameIsOver)
         {
-            int x = (int)transform.position.x;
-            int y = (int)transform.position.y;
-
-            LoadTexture(Grid.Instance.AdjacentMines(x, y));
-
-            Grid.Instance.FloodFillAlgorithm(x, y, new bool[Grid.Instance.w, Grid.Instance.h]);
-
-            if (Grid.Instance.IsFinished())
+            if (mine)
             {
-                //Win();
+                Grid.Instance.UncoverMines();
+
+                GameManager.Instance.Lose();
+            }
+
+            else
+            {
+                int x = (int)transform.position.x;
+                int y = (int)transform.position.y;
+
+                LoadTexture(Grid.Instance.AdjacentMines(x, y));
+
+                Grid.Instance.FloodFillAlgorithm(x, y, new bool[Grid.Instance.w, Grid.Instance.h]);
+
+                if (Grid.Instance.IsFinished())
+                {
+                    GameManager.Instance.Win();
+                }
             }
         }
     }
