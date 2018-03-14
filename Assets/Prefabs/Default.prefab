@@ -79,7 +79,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mine: 0
-  defaultTexture: {fileID: 21300000, guid: b29ec94c04f8e8947bad07ca04f5627e, type: 3}
   mineTexture: {fileID: 21300000, guid: 1186df1a4e7e71e478a67cc0296843e3, type: 3}
   emptyTextures:
   - {fileID: 21300000, guid: a7daba592cc52924c90fa369dbd9c855, type: 3}
