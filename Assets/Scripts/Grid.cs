@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class Grid {
+public class Grid : Singleton<Grid> {
 
-    public static int w = 10;
-    public static int h = 13;
+    public int w = 10;
+    public int h = 13;
 
-    public static Element[,] elements = new Element[w, h]; 
+    public Element[,] elements; 
 
-    public static void UncoverMines()
+    public Grid()
+    {
+        elements = new Element[w, h]; 
+    }
+
+    public void UncoverMines()
     {
         foreach(Element element in elements)
         {
@@ -18,7 +20,7 @@ public class Grid {
         }
     }
 
-    public static bool MineAt(int x, int y)
+    public bool MineAt(int x, int y)
     {
         if (x >= 0 && y >= 0 && x < w && y < h)
             return elements[x, y].mine;
@@ -26,7 +28,7 @@ public class Grid {
         return false; 
     }
 
-    public static int AdjacentMines(int x, int y)
+    public int AdjacentMines(int x, int y)
     {
         int count = 0;
 
@@ -43,7 +45,7 @@ public class Grid {
     }
 
 
-    public static void FloodFillAlgorithm(int x, int y, bool[,] visited)
+    public void FloodFillAlgorithm(int x, int y, bool[,] visited)
     {
         if(x >= 0 && y >= 0 && x < w && y < h)
         {
@@ -65,7 +67,7 @@ public class Grid {
         }
     }
 
-    public static bool IsFinished()
+    public bool IsFinished()
     {
         foreach (Element element in elements)
             if (element.isCovered() && !element.mine)

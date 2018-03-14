@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Element : MonoBehaviour {
@@ -16,7 +14,7 @@ public class Element : MonoBehaviour {
         int x = (int)transform.position.x;
         int y = (int)transform.position.y;
 
-        Grid.elements[x, y] = this; 
+        Grid.Instance.elements[x, y] = this; 
 	}
 	
     public void LoadTexture(int adjCount)
@@ -36,8 +34,8 @@ public class Element : MonoBehaviour {
     private void OnMouseUpAsButton()
     {
         if(mine)
-        {
-            Grid.UncoverMines(); 
+        {   
+            Grid.Instance.UncoverMines(); 
         }
 
         else
@@ -45,11 +43,11 @@ public class Element : MonoBehaviour {
             int x = (int)transform.position.x;
             int y = (int)transform.position.y;
 
-            LoadTexture(Grid.AdjacentMines(x, y));
+            LoadTexture(Grid.Instance.AdjacentMines(x, y));
 
-            Grid.FloodFillAlgorithm(x, y, new bool[Grid.w, Grid.h]);
+            Grid.Instance.FloodFillAlgorithm(x, y, new bool[Grid.Instance.w, Grid.Instance.h]);
 
-            if (Grid.IsFinished())
+            if (Grid.Instance.IsFinished())
             {
                 //Win();
             }
