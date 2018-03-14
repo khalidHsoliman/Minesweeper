@@ -9,10 +9,14 @@ public class Element : MonoBehaviour {
     public Sprite mineTexture;
     public Sprite[] emptyTextures; 
 
-	// Use this for initialization
 	void Start () {
 
-        mine = Random.value < 0.15;         
+        mine = Random.value < 0.15;
+
+        int x = (int)transform.position.x;
+        int y = (int)transform.position.y;
+
+        Grid.elements[x, y] = this; 
 	}
 	
     public void LoadTexture(int adjCount)
@@ -26,6 +30,20 @@ public class Element : MonoBehaviour {
     public bool isCovered()
     {
         return GetComponent<SpriteRenderer>().sprite.texture.name == "default";
+    }
+
+
+    private void OnMouseUpAsButton()
+    {
+        if(mine)
+        {
+
+        }
+
+        else
+        {
+
+        }
     }
 
 }
