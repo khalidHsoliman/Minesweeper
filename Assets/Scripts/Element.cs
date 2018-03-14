@@ -45,7 +45,9 @@ public class Element : MonoBehaviour {
             int x = (int)transform.position.x;
             int y = (int)transform.position.y;
 
-            LoadTexture(Grid.AdjacentMines(x, y)); 
+            LoadTexture(Grid.AdjacentMines(x, y));
+
+            Grid.FloodFillAlgorithm(x, y, new bool[Grid.w, Grid.h]);
         }
     }
 

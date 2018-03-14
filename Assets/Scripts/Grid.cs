@@ -41,4 +41,27 @@ public class Grid {
 
         return count; 
     }
+
+
+    public static void FloodFillAlgorithm(int x, int y, bool[,] visited)
+    {
+        if(x >= 0 && y >= 0 && x < w && y < h)
+        {
+            if (visited[x, y])
+                return;
+
+            elements[x, y].LoadTexture(AdjacentMines(x, y));
+
+            if (AdjacentMines(x, y) > 0)
+                return;
+
+            visited[x, y] = true;
+
+            FloodFillAlgorithm(x    , y + 1, visited); // top 
+            FloodFillAlgorithm(x    , y - 1, visited); // bottom 
+            FloodFillAlgorithm(x + 1, y    , visited); // right 
+            FloodFillAlgorithm(x - 1, y    , visited); // left 
+
+        }
+    }
 }
