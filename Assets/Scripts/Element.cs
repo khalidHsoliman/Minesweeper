@@ -37,12 +37,15 @@ public class Element : MonoBehaviour {
     {
         if(mine)
         {
-
+            Grid.UncoverMines(); 
         }
 
         else
         {
+            int x = (int)transform.position.x;
+            int y = (int)transform.position.y;
 
+            LoadTexture(Grid.AdjacentMines(x, y)); 
         }
     }
 

@@ -17,4 +17,28 @@ public class Grid {
                 element.LoadTexture(0);                  
         }
     }
+
+    public static bool MineAt(int x, int y)
+    {
+        if (x >= 0 && y >= 0 && x < w && y < h)
+            return elements[x, y].mine;
+
+        return false; 
+    }
+
+    public static int AdjacentMines(int x, int y)
+    {
+        int count = 0;
+
+        if (MineAt (x    , y + 1)) count++; // top
+        if (MineAt (x + 1, y + 1)) count++; // top right 
+        if (MineAt (x - 1, y + 1)) count++; // top left 
+        if (MineAt (x + 1, y    )) count++; // right 
+        if (MineAt (x - 1, y    )) count++; // left 
+        if (MineAt (x    , y - 1)) count++; // bottom 
+        if (MineAt (x + 1, y - 1)) count++; // bottom right 
+        if (MineAt (x - 1, y - 1)) count++; // bottom left
+
+        return count; 
+    }
 }
