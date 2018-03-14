@@ -4,7 +4,6 @@ public class Element : MonoBehaviour {
 
     public bool mine;
 
-    public Sprite defaultTexture; 
     public Sprite mineTexture;
     public Sprite[] emptyTextures; 
 
@@ -59,5 +58,4 @@ public class Element : MonoBehaviour {
             }
         }
     }
-
 }
